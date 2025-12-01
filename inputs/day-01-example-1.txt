@@ -1,0 +1,1 @@
+# Put the example input from https://adventofcode.com/2025/day/1 here
