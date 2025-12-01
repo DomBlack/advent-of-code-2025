@@ -51,11 +51,11 @@ if command -v zig &> /dev/null; then
     # Try to build
     echo ""
     echo "Testing build system..."
-    if zig build 2>&1 | grep -q "error"; then
+    if zig build; then
+        echo "✓ Build successful"
+    else
         echo "✗ Build failed"
         exit 1
-    else
-        echo "✓ Build successful"
     fi
 else
     echo "⚠ Zig not found - install Zig 0.15.2 to test builds"
