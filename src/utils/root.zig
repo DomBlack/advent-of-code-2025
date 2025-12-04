@@ -2,6 +2,7 @@ const std = @import("std");
 
 pub const parsing = @import("parsing.zig");
 pub const maths = @import("maths.zig");
+pub const maps = @import("maps.zig");
 
 // Force test discovery for imported modules
 test {
