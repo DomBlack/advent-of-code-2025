@@ -105,6 +105,12 @@ pub fn Map(comptime TileType: type) type {
         pub fn get(self: Self, pos: Pos) ?TileType {
             return if (self.indexOf(pos)) |idx| self.tiles[idx] else null;
         }
+
+        // set sets the TileType at the given position, or returns an error if out of bounds.
+        pub fn set(self: *Self, pos: Pos, value: TileType) !void {
+            const idx = self.indexOf(pos) orelse return error.OutOfBounds;
+            self.tiles[idx] = value;
+        }
     };
 }
 
