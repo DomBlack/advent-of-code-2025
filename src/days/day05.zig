@@ -1,5 +1,4 @@
 const std = @import("std");
-const utils = @import("utils");
 
 // ============================================================================
 // Public Interface (called by main.zig)

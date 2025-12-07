@@ -40,7 +40,10 @@ pub fn readInputFile(allocator: std.mem.Allocator, day: u8) ![]u8 {
     // Read the entire file into memory
     // Use a reasonable max size (10MB should be plenty for AoC inputs)
     const max_size = 10 * 1024 * 1024;
-    const contents = try file.readToEndAlloc(allocator, max_size);
+
+    var read_buffer: [4096]u8 = undefined;
+    var file_reader = file.reader(&read_buffer);
+    const contents = try file_reader.interface.allocRemaining(allocator, std.Io.Limit.limited(max_size));
 
     return contents;
 }

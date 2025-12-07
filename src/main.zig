@@ -17,7 +17,7 @@ const days = @import("days.zig");
 
 pub fn main() !void {
     // Set up memory allocator
-    var gpa = std.heap.GeneralPurposeAllocator(.{}){};
+    var gpa = std.heap.ArenaAllocator.init(std.heap.page_allocator);
     defer _ = gpa.deinit();
     const allocator = gpa.allocator();
 

@@ -1,5 +1,4 @@
 const std = @import("std");
-const utils = @import("utils");
 
 // ============================================================================
 // Public Interface (called by main.zig)
@@ -90,11 +89,11 @@ pub fn part2(allocator: std.mem.Allocator, input: []const u8) !i64 {
         for (digits.items) |num_str| {
             if (digit_pos >= num_str.len) continue;
 
-            const ch = num_str[digit_pos];
-            if (ch < '0' or ch > '9') continue;
+            const char = num_str[digit_pos];
+            if (char < '0' or char > '9') continue;
 
             digit *= 10;
-            digit += @as(i64, ch - '0');
+            digit += @as(i64, char - '0');
             found_anything = true;
         }
 
@@ -142,12 +141,12 @@ fn parseOperators(allocator: std.mem.Allocator, line: []const u8) ![]Operators {
     while (parts.next()) |part| {
         if (part.len == 0) continue;
 
-        const op = switch (part[0]) {
+        const operator = switch (part[0]) {
             '+' => Operators.add,
             '*' => Operators.multiply,
             else => return error.InvalidOperator,
         };
-        try list.append(allocator, op);
+        try list.append(allocator, operator);
     }
 
     return try list.toOwnedSlice(allocator);
@@ -164,12 +163,12 @@ const example_input =
     \\*   +   *   +
 ;
 
-test "day05 part1 example" {
+test "day06 part1 example" {
     const result = try part1(std.testing.allocator, example_input);
     try std.testing.expectEqual(@as(i64, 4277556), result);
 }
 
-test "day05 part2 example" {
+test "day06 part2 example" {
     const result = try part2(std.testing.allocator, example_input);
     try std.testing.expectEqual(@as(i64, 3263827), result);
 }
